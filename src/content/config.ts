@@ -1,4 +1,4 @@
-import { z, defineCollection } from 'astro:content';
+import { z, defineCollection, reference } from 'astro:content';
 import { glob } from 'astro/loaders';
 
 const metadataDefinition = () =>
@@ -65,6 +65,54 @@ const postCollection = defineCollection({
   }),
 });
 
+const authorsCollection = defineCollection({
+  type: 'data', // 'data' used for pure datea files like json or yaml
+  schema: z.object({
+    name: z.string(),
+    picture: z.string().url().optional(), //authors profile pic authorsCollection
+  }),
+});
+
+const blogCollection = defineCollection({
+  type: 'content', // use 'content' for md or mdx files
+  schema: z.object({
+    title: z.string(),
+    //Coerce will attempt to converta a string from frontmatter into a date object
+    pubDate: z.coerce.date(),
+    description: z.string(),
+    tags: z.array(z.string()),
+    isDraft: z.boolean().default(false),
+    //This is the loader part it references an entry in another collection.
+    author: reference('authors'),
+    heroImage: z.string().optional(),
+  }),
+});
+
+const artCollection = defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    imageUrl: z.string().url(),
+    description: z.string(),
+    dateCompleted: z.coerce.date(),
+    medium: z.array(z.string()),
+    price: z.number().positive(),
+    prodigiSku: z.string(),
+    variants: z
+      .array(
+        z.object({
+          name: z.string(),
+          options: z.array(z.string()),
+        })
+      )
+      .optional(),
+  }),
+});
+
+//export above as single collections object
 export const collections = {
   post: postCollection,
+  authors: authorsCollection,
+  blog: blogCollection,
+  art: artCollection,
 };
