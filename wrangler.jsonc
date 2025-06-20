@@ -1,0 +1,12 @@
+{
+  "$schema": "node_module/wrangler/config-schema.json",
+  "name": "scatteredmind",
+  "compatibility_date": "2025-06-19",
+  "assets": {
+    "directory": "./dist"
+  },
+  "compatibilty_flags": ["nodejs_compat"],
+  "observability": {
+    "enabled": true
+  }
+}
