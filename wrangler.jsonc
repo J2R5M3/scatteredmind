@@ -1,6 +1,6 @@
 {
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "scatteredmind",
+  "name": "scattered-minds",
   "compatibility_date": "2025-06-19",
   "assets": {
     "directory": "./dist",

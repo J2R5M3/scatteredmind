@@ -1,16 +1,6 @@
 ---
-const socialLinks = [
-  {
-    href: '#',
-    label: 'Matrix',
-    icon: '<path d="M248 72H8v16h240V72zm-8 32H16v16h224v-16zm-8 32H24v16h208v-16zM32 184h192v16H32v-16zm192-128H32V40h192v16z"/>',
-  },
-  {
-    href: '#',
-    label: 'Discord',
-    icon: '<path d="M128 40a88 88 0 0 0-88 88v8h-8a8 8 0 0 0-8 8v32a8 8 0 0 0 8 8h8v8a88 88 0 0 0 176 0v-8h8a8 8 0 0 0 8-8v-32a8 8 0 0 0-8-8h-8v-8a88 88 0 0 0-88-88zm0 16a72 72 0 0 1 72 72v8H56v-8a72 72 0 0 1 72-72zM48 152h160v16H48v-16z"/>',
-  },
-];
+import { footerData } from '~/navigation';
+import { Icon } from 'astro-icon/components';
 ---
 
 <footer class="bg-black/20 border-t-4 border-card-border">
@@ -18,16 +8,9 @@ const socialLinks = [
     <div class="flex flex-col items-center justify-between gap-4 md:flex-row">
       <div class="flex gap-6">
         {
-          socialLinks.map((link) => (
-            <a class="text-gray-500 hover:text-primary transition-colors" href={link.href} aria-label={link.label}>
-              <svg
-                fill="currentColor"
-                height="32"
-                viewBox="0 0 256 256"
-                width="32"
-                xmlns="http://www.w3.org/2000/svg"
-                set:html={link.icon}
-              />
+          footerData.socialLinks.map((link) => (
+            <a class="text-gray-500 hover:text-primary transition-colors" href={link.href} aria-label={link.ariaLabel}>
+              <Icon name={link.icon} class="w-8 h-8" />
             </a>
           ))
         }

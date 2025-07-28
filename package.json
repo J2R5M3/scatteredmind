@@ -1,6 +1,7 @@
 {
   "name": "former-force",
   "version": "1.0.0-beta.52",
+  "shamefully-hoist": true,
   "description": "AstroWind: A free template using Astro 5.0 and Tailwind CSS. Astro starter theme.",
   "type": "module",
   "engines": {

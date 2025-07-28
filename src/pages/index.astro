@@ -1,27 +1,19 @@
 ---
-import Note from '~/components/widgets/Note.astro';
-import BlogLatestPosts from '~/components/widgets/BlogLatestPosts.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
-const metadata = {
-  title: 'A Home and Safe Hub for all Scattered Minds, Tinker with me!',
-  ignoreTitleTemplate: true,
-};
 ---
 
 <Header />
 
-<!-- HighlightedPosts Widget ******* -->
+<main class="flex-grow">
+  <section class="py-16">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div class="text-center">
+        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Welcome to Scattered Minds</h1>
+        <p class="mt-4 text-xl text-muted">This is a placeholder for the new homepage content.</p>
+      </div>
+    </div>
+  </section>
+</main>
 
-<BlogLatestPosts
-  title="More wordingess by me available in the Blog"
-  information={`The blog is used to ... do stuff...lol for now 
-                `}
-/>
-
-<!-- Note Widget ******************* -->
-<Note
-  title="Isolation and Connection:"
-  description="We who can't help but want to connect to everything become Isolated in turn, let's change that."
-/>
 <Footer />
