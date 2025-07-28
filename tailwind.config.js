@@ -12,11 +12,6 @@ export default {
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
-        background: '#1a1a2e',
-        text: '#e0e0e0',
-        'card-background': '#2a2a3e',
-        'card-border': '#4a4a5e',
-        'text-secondary': '#b0b0c0',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],

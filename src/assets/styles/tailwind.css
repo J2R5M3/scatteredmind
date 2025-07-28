@@ -4,21 +4,19 @@
 
 /* Define CSS variables in the root */
 :root {
-  --primary-color: #7e57c2;
-  --background-color: #1a1a2e;
-  --text-color: #e0e0e0;
-  --card-background: #2a2a3e;
-  --card-border: #4a4a5e;
-  --text-secondary: #b0b0c0;
-  --accent-color: #ff7043;
-  --accent-glow: rgba(255, 112, 67, 0.5);
+  --aw-color-primary: #7e57c2;
+  --aw-color-secondary: #ff7043;
+  --aw-color-accent: #ff7043;
+  --aw-color-text-default: #e0e0e0;
+  --aw-color-text-muted: #b0b0c0;
+  --aw-color-bg-page: #1a1a2e;
 }
 
 /* Apply base body styles */
 body {
   font-family: 'VT323', monospace;
-  background-color: var(--background-color);
-  color: var(--text-color);
+  background-color: var(--aw-color-bg-page);
+  color: var(--aw-color-text-default);
 }
 
 @layer utilities {
