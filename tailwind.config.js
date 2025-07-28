@@ -12,22 +12,32 @@ export default {
         accent: 'var(--aw-color-accent)',
         default: 'var(--aw-color-text-default)',
         muted: 'var(--aw-color-text-muted)',
+        background: '#1a1a2e',
+        text: '#e0e0e0',
+        'card-background': '#2a2a3e',
+        'card-border': '#4a4a5e',
+        'text-secondary': '#b0b0c0',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
         serif: ['var(--aw-font-serif, ui-serif)', ...defaultTheme.fontFamily.serif],
         heading: ['var(--aw-font-heading, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
+        mono: ['"VT323"', ...defaultTheme.fontFamily.mono],
       },
 
       animation: {
         fade: 'fadeInUp 1s both',
       },
-
       keyframes: {
         fadeInUp: {
           '0%': { opacity: 0, transform: 'translateY(2rem)' },
           '100%': { opacity: 1, transform: 'translateY(0)' },
         },
+      },
+      dropShadow: {
+        primary: '3px 3px 0 var(--primary-color)',
+        accent: '4px 4px 0 var(--accent-color)',
+        'accent-sm': '2px 2px 0 var(--accent-color)',
       },
     },
   },
