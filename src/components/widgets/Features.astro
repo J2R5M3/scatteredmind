@@ -1,36 +1,56 @@
 ---
-import WidgetWrapper from '~/components/ui/WidgetWrapper.astro';
-import ItemGrid from '~/components/ui/ItemGrid.astro';
-import Headline from '~/components/ui/Headline.astro';
-import type { Features as Props } from '~/types';
-
-const {
-  title = await Astro.slots.render('title'),
-  subtitle = await Astro.slots.render('subtitle'),
-  tagline = await Astro.slots.render('tagline'),
-  items = [],
-  columns = 2,
-
-  defaultIcon,
-
-  id,
-  isDark = false,
-  classes = {},
-  bg = await Astro.slots.render('bg'),
-} = Astro.props;
+// You can pass features as a prop array for reusability
+const features = [
+  {
+    title: 'Tech for Shelter Animals',
+    description:
+      'Building accessible, open-source technology to improve the lives of shelter animals and support their caregivers.',
+    icon: '<path d="M128 128h32v32h-32zM96 96h32v32H96zM96 160h32v32H96zM64 128h32v32H64zM160 96h32v32h-32zM32 32v192h192V32H32zm176 176H48V48h160v160z"></path>',
+  },
+  {
+    title: 'A Supportive Community',
+    description:
+      'Fostering a welcoming community for scattered minds, promoting collaboration, shared learning, and mutual support.',
+    icon: '<path d="M108 108 A 24 24 0 1 0 108 60 A 24 24 0 1 0 108 108 M 108 116 A 40 40 0 0 0 36 168 L 36 200 L 180 200 L 180 168 A 40 40 0 0 0 108 116 M 180 60 h 24 v 24 h -24 z M 180 100 h 40 v 24 h -40 z M 32 32 v 192 h 192 V 32 H 32 z m 176 176 H 48 V 48 h 160 v 160 z"></path>',
+  },
+  {
+    title: 'Assistive Technology',
+    description:
+      'Developing assistive technologies to empower individuals with diverse cognitive styles and enhance their daily capabilities.',
+    icon: '<path d="M88 88h80v16H88zM88 120h80v16H88zM88 152h48v16H88zM64 48h128v160H64V48zm-16-16v192h160V32H48zM32 0v192h16V16h176V0H32z"></path>',
+  },
+];
 ---
 
-<WidgetWrapper id={id} isDark={isDark} containerClass={`max-w-5xl ${classes?.container ?? ''}`} bg={bg}>
-  <Headline title={title} subtitle={subtitle} tagline={tagline} classes={classes?.headline as Record<string, string>} />
-  <ItemGrid
-    items={items}
-    columns={columns}
-    defaultIcon={defaultIcon}
-    classes={{
-      container: '',
-      title: 'md:text-[1.3rem]',
-      icon: 'text-white bg-primary rounded-full w-10 h-10 p-2 md:w-12 md:h-12 md:p-3 mr-4 rtl:ml-4 rtl:mr-0',
-      ...((classes?.items as Record<string, never>) ?? {}),
-    }}
-  />
-</WidgetWrapper>
+<section class="py-16 md:py-24 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="text-center max-w-3xl mx-auto">
+    <h2 class="text-5xl font-bold tracking-tight text-text sm:text-6xl drop-shadow-primary">
+      Empowering Through Open Source
+    </h2>
+    <p class="mt-6 text-2xl leading-8 text-text-secondary">
+      At Scattered Minds, we believe in the power of open source to create positive change. Our mission is threefold:
+    </p>
+  </div>
+  <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-3">
+    {
+      features.map((feature) => (
+        <div class="flex flex-col gap-4 bg-card-background p-6 pixel-border transition-transform hover:-translate-y-1 hover:-translate-x-1">
+          <div class="flex h-16 w-16 items-center justify-center bg-primary pixel-border border-card-border">
+            <svg
+              fill="currentColor"
+              height="40"
+              viewBox="0 0 256 256"
+              width="40"
+              xmlns="http://www.w3.org/2000/svg"
+              set:html={feature.icon}
+            />
+          </div>
+          <div class="flex flex-col gap-2">
+            <h3 class="text-3xl font-semibold text-text">{feature.title}</h3>
+            <p class="text-xl text-text-secondary">{feature.description}</p>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>

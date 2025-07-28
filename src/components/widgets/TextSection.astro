@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+export interface Props extends HTMLAttributes<'div'> {
+  title: string;
+  subtitle?: string;
+  showKintsugiLine?: boolean;
+}
+
+const { title, subtitle, showKintsugiLine = false, ...props } = Astro.props;
+---
+
+<section class="space-y-8 bg-card-background p-8 md:p-12 pixel-border" {...props}>
+  <div class:list={[{ 'relative pt-8': showKintsugiLine }]}>
+    {showKintsugiLine && <div class="kintsugi-line h-1 w-full top-0 left-0" />}
+    <h2 class="text-4xl font-bold tracking-tight text-text sm:text-5xl drop-shadow-accent-sm">{title}</h2>
+    {subtitle && <p class="mt-4 text-2xl leading-8 text-text-secondary">{subtitle}</p>}
+    <div class="mt-4 text-2xl leading-8 text-text-secondary">
+      <slot />
+    </div>
+  </div>
+</section>
