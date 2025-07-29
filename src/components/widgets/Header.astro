@@ -10,58 +10,63 @@ const links = [
 ];
 ---
 
-<header
-  class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b-4 border-card-border bg-background/80 px-10 py-4 backdrop-blur-sm"
+<Logo />
 
+<header
+  class="sticky top-0 z-50 flex items-center justify-between
+whitespace-nowrap border-b-4 border-card-border bg-background/80
+px-10 py-4 backdrop-blur-sm"
+>
+  <div>
+    <nav class="flex flex-1 justify-end gap-6">
+      <div class="flex items-center gap-6 text-2xl">
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">About</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Projects</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Community</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Contact</a
+        >
+      </div>
+      <a
+        class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-11 px-5 bg-[var(--primary-color)] text-white text-xl font-bold leading-normal tracking-wide pixel-button"
+        href="#"
+      >
+        <span class="truncate">Join Discord</span>
+      </a>
+    </nav>
   </div>
-  <nav class="flex flex-1 justify-end gap-6">
+
+  <!-- Desktop Navigation -->
+  <nav class="hidden md:flex flex-1 justify-end gap-6">
     <div class="flex items-center gap-6 text-2xl">
-      <a
-        class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
-        href="#">About</a
-      >
-      <a
-        class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
-        href="#">Projects</a
-      >
-      <a
-        class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
-        href="#">Community</a
-      >
-      <a
-        class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
-        href="#">Contact</a
-      >
+      {
+        links.map((link) => (
+          <a class="text-base font-medium text-text-secondary hover:text-primary transition-colors" href={link.href}>
+            {link.text}
+          </a>
+        ))
+      }
     </div>
     <a
-      class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-11 px-5 bg-[var(--primary-color)] text-white text-xl font-bold leading-normal tracking-wide pixel-button"
+      class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-11 px-5 bg-primary text-white text-xl font-bold leading-normal tracking-wide pixel-button"
       href="#"
     >
       <span class="truncate">Join Discord</span>
     </a>
   </nav>
-</header>
 
-<!-- Desktop Navigation -->
-<nav class="hidden md:flex flex-1 justify-end gap-6">
-  <div class="flex items-center gap-6 text-2xl">
-    {
-      links.map((link) => (
-        <a class="text-base font-medium text-text-secondary hover:text-primary transition-colors" href={link.href}>
-          {link.text}
-        </a>
-      ))
-    }
+  <!-- Mobile Menu Toggle -->
+  <div class="md:hidden">
+    <ToggleMenu />
   </div>
-  <a
-    class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-11 px-5 bg-primary text-white text-xl font-bold leading-normal tracking-wide pixel-button"
-    href="#"
-  >
-    <span class="truncate">Join Discord</span>
-  </a>
-</nav>
-
-<!-- Mobile Menu Toggle -->
-<div class="md:hidden">
-  <ToggleMenu />
-</div>
+</header>
