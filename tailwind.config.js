@@ -7,11 +7,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--aw-color-primary)',
+        primary: 'var(--primary-color)',
         secondary: 'var(--aw-color-secondary)',
-        accent: 'var(--aw-color-accent)',
-        default: 'var(--aw-color-text-default)',
+        accent: 'var(accent-color)',
+        default: 'var(--text-color)',
         muted: 'var(--aw-color-text-muted)',
+        background: 'var(--background-color)',
+        text: 'var(--aw-color-text-default)',
+        'card-background': 'var(--aw-color-card-background)',
+
+        'card-border': 'var(card-border)',
+
+        'text-secondary': '#b0b0c0',
       },
       fontFamily: {
         sans: ['var(--aw-font-sans, ui-sans-serif)', ...defaultTheme.fontFamily.sans],
