@@ -1,0 +1,16 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Echoes from '../components/widgets/Echoes.astro';
+
+export const prerender = false;
+---
+
+<Layout title="The Lighthouse">
+  <main class="container mx-auto p-4">
+    <h1 class="text-4xl font-bold text-center mb-8">Welcome to The Lighthouse</h1>
+
+    <Echoes client:defer />
+
+    <p class="text-center mt-8">More content for your page...</p>
+  </main>
+</Layout>

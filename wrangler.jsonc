@@ -2,11 +2,18 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "scatteredmind",
   "compatibility_date": "2025-06-19",
-  "assets": {
-    "directory": "./dist",
-  },
   "compatibility_flags": ["nodejs_compat"],
   "observability": {
     "enabled": true,
+  },
+  "pages_build_output_dir": "dist", // Add this line
+  "r2_buckets": [
+    {
+      "binding": "ECHOES_BUCKET", // Variable name for your code
+      "bucket_name": "scattered-souls-echoes", // Your actual R2 bucket name
+    },
+  ],
+  "ai": {
+    "binding": "AI", // Enables the AI models
   },
 }

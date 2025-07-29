@@ -1,0 +1,214 @@
+---
+
+---
+
+<div id="echoes-container" class="p-6 border border-gray-700 rounded-lg max-w-md mx-auto bg-gray-800 text-white">
+  <h2 class="text-2xl font-bold mb-4 text-emerald-400">The Echo Exchange</h2>
+  <p class="mb-4">To receive a message of comfort, you must first offer one to the community.</p>
+
+  {/* Contribution Section */}
+  <div id="give-echo-section">
+    {/* Tabs */}
+    <div class="flex border-b border-gray-600 mb-4">
+      <button
+        id="tab-record"
+        class="flex-1 py-2 text-center font-semibold border-b-2 border-emerald-500 text-emerald-400"
+        >Record Audio</button
+      >
+      <button id="tab-write" class="flex-1 py-2 text-center font-semibold text-gray-400">Write Text</button>
+    </div>
+
+    {/* Record Audio Panel */}
+    <div id="panel-record">
+      <p class="italic text-gray-300 mb-4 p-3 bg-gray-700 rounded">"May you be filled with loving-kindness."</p>
+      <button
+        id="record-btn"
+        class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition-all duration-300"
+        >Start Recording</button
+      >
+      <p id="record-status" class="mt-2 text-sm text-gray-400">Click to read the prompt (max 10s)</p>
+    </div>
+
+    {/* Write Text Panel */}
+    <div id="panel-write" class="hidden">
+      <textarea
+        id="text-input"
+        class="w-full bg-gray-700 text-white p-2 rounded border border-gray-600"
+        rows="3"
+        placeholder="Type a short, comforting message..."></textarea>
+      <button id="submit-text-btn" class="mt-2 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg"
+        >Submit Text</button
+      >
+      <p id="text-status" class="mt-2 text-sm text-gray-400"></p>
+    </div>
+  </div>
+
+  {/* Consumption Section */}
+  <div id="get-echo-section" class="hidden mt-6">
+    <p class="mb-4">Thank you. Here is your echo. Choose how you'd like to receive it.</p>
+    <div id="echo-display" class="p-4 bg-gray-700 rounded">
+      <p id="echo-transcript" class="italic text-gray-300 mb-4">...</p>
+      <audio id="echo-player" class="w-full"></audio>
+    </div>
+    <p id="listen-status" class="mt-2 text-sm text-gray-400"></p>
+  </div>
+</div>
+
+<script>
+  // --- Type Definitions and Guards ---
+  // This helps ensure the data we get from the API is in the shape we expect.
+  interface RandomEchoResponse {
+    audioUrl: string;
+    transcript: string;
+  }
+
+  function isRandomEchoResponse(data: unknown): data is RandomEchoResponse {
+    return (
+      typeof data === 'object' &&
+      data !== null &&
+      'audioUrl' in data &&
+      typeof (data as RandomEchoResponse).audioUrl === 'string' &&
+      'transcript' in data &&
+      typeof (data as RandomEchoResponse).transcript === 'string'
+    );
+  }
+
+  // --- Element Selectors ---
+  const tabRecord = document.getElementById('tab-record') as HTMLButtonElement;
+  const tabWrite = document.getElementById('tab-write') as HTMLButtonElement;
+  const panelRecord = document.getElementById('panel-record') as HTMLDivElement;
+  const panelWrite = document.getElementById('panel-write') as HTMLDivElement;
+
+  const recordBtn = document.getElementById('record-btn') as HTMLButtonElement;
+  const recordStatus = document.getElementById('record-status') as HTMLParagraphElement;
+  const textInput = document.getElementById('text-input') as HTMLTextAreaElement;
+  const submitTextBtn = document.getElementById('submit-text-btn') as HTMLButtonElement;
+  const textStatus = document.getElementById('text-status') as HTMLParagraphElement;
+
+  const giveEchoSection = document.getElementById('give-echo-section') as HTMLDivElement;
+  const getEchoSection = document.getElementById('get-echo-section') as HTMLDivElement;
+  const echoPlayer = document.getElementById('echo-player') as HTMLAudioElement;
+  const echoTranscript = document.getElementById('echo-transcript') as HTMLParagraphElement;
+  const listenStatus = document.getElementById('listen-status') as HTMLParagraphElement;
+
+  let mediaRecorder: MediaRecorder | null = null;
+  let audioChunks: Blob[] = [];
+  let isRecording = false;
+
+  // Tab switching logic
+  tabRecord.addEventListener('click', () => {
+    panelRecord.classList.remove('hidden');
+    panelWrite.classList.add('hidden');
+    tabRecord.classList.add('border-emerald-500', 'text-emerald-400');
+    tabWrite.classList.remove('border-emerald-500', 'text-emerald-400');
+  });
+
+  tabWrite.addEventListener('click', () => {
+    panelWrite.classList.remove('hidden');
+    panelRecord.classList.add('hidden');
+    tabWrite.classList.add('border-emerald-500', 'text-emerald-400');
+    tabRecord.classList.remove('border-emerald-500', 'text-emerald-400');
+  });
+
+  // --- Submission Logic ---
+
+  function showConsumptionUI() {
+    giveEchoSection.style.display = 'none';
+    getEchoSection.style.display = 'block';
+    fetchAndDisplayRandomEcho();
+  }
+
+  // Audio Recording
+  recordBtn.addEventListener('click', async () => {
+    if (isRecording) {
+      mediaRecorder?.stop();
+      isRecording = false;
+      recordBtn.textContent = 'Start Recording';
+      recordBtn.classList.remove('bg-gray-500');
+      recordBtn.classList.add('bg-red-600');
+    } else {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        mediaRecorder = new MediaRecorder(stream);
+        audioChunks = [];
+        mediaRecorder.ondataavailable = (e) => audioChunks.push(e.data);
+        mediaRecorder.onstop = async () => {
+          const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+          recordStatus.textContent = 'Uploading your echo...';
+          try {
+            const response = await fetch('/api/echoes/submit', {
+              method: 'POST',
+              headers: { 'Content-Type': 'audio/webm' },
+              body: audioBlob,
+            });
+            if (!response.ok) throw new Error('Upload failed');
+            showConsumptionUI();
+          } catch (error) {
+            recordStatus.textContent = 'Upload error.';
+          }
+        };
+        mediaRecorder.start();
+        isRecording = true;
+        recordBtn.textContent = 'Stop Recording';
+        recordBtn.classList.add('bg-gray-500');
+        recordStatus.textContent = 'Recording...';
+        setTimeout(() => {
+          if (isRecording) mediaRecorder?.stop();
+        }, 10000);
+      } catch (error) {
+        recordStatus.textContent = 'Mic access denied.';
+      }
+    }
+  });
+
+  // Text Submission
+  submitTextBtn.addEventListener('click', async () => {
+    const text = textInput.value.trim();
+    if (text.length === 0) {
+      textStatus.textContent = 'Please write a message.';
+      return;
+    }
+    textStatus.textContent = 'Submitting your echo...';
+    try {
+      const response = await fetch('/api/echoes/submit', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ text }),
+      });
+      if (!response.ok) throw new Error('Submission failed');
+      showConsumptionUI();
+    } catch (error) {
+      textStatus.textContent = 'Submission error.';
+    }
+  });
+
+  // --- Consumption Logic ---
+
+  async function fetchAndDisplayRandomEcho() {
+    listenStatus.textContent = 'Finding an echo...';
+    try {
+      const response = await fetch('/api/echoes/random');
+      if (!response.ok) throw new Error('Could not find an echo.');
+
+      const data: unknown = await response.json(); // Fetch data as 'unknown'
+
+      // Use the type guard to safely access the data
+      if (isRandomEchoResponse(data)) {
+        echoTranscript.textContent = `"${data.transcript}"`;
+        echoPlayer.src = data.audioUrl;
+        listenStatus.textContent = 'Ready to listen or read.';
+      } else {
+        throw new Error('Received invalid data from the server.');
+      }
+
+      echoPlayer.onended = () => {
+        listenStatus.textContent = 'Listen again?';
+      };
+    } catch (error) {
+      console.error(error);
+      const message = error instanceof Error ? error.message : 'An unknown error occurred.';
+      listenStatus.textContent = `Error: ${message}`;
+      echoTranscript.textContent = '';
+    }
+  }
+</script>
