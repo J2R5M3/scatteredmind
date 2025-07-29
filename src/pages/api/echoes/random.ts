@@ -1,5 +1,9 @@
 import type { APIRoute } from 'astro';
 
+// This line is the fix. It tells Astro to treat this file as a
+// dynamic, server-side endpoint, even in the local dev server.
+export const prerender = false;
+
 export const GET: APIRoute = async (context) => {
   try {
     const bucket = context.locals.runtime.env.ECHOES_BUCKET;

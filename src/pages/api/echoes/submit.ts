@@ -1,6 +1,10 @@
 import type { APIRoute } from 'astro';
 import { v4 as uuidv4 } from 'uuid';
 
+// This line is the fix. It tells Astro to treat this file as a
+// dynamic, server-side endpoint, even in the local dev server.
+export const prerender = false;
+
 // Type guard to check if an object has a 'text' property of type string
 function isTextSubmission(body: unknown): body is { text: string } {
   return (
