@@ -15,7 +15,135 @@ import Footer from '~/components/widgets/Footer.astro';
           <p class="mt-4 text-xl text-muted">This is a placeholder for the new homepage content.</p>
         </div>
       </div>
-    </section>
+  </section>
+
+  <section
+    class="relative flex min-h-[500px] flex-col items-center
+  justify-center gap-8 bg-cover bg-center bg-no-repeat p-8 text-center
+  pixel-border bg-[var(--card-background)]"
+    style='background-image: linear-gradient(rgba(26, 26, 46, 0.7) 0%, 
+  rgba(26, 26, 46, 0.9) 100%), 
+  url("https://lh3.googleusercontent.com/aida-public/AB6AXuC8QAIV-Ud9hQhmhPVcSiD5U2K1vzGOc-OezFjSh8IUoDoUZUNXkbyZRBtNg4JuL2-ZMkm7MXt-LYRbsuLPySaopwKr55kpnno6ZV3g0VtP2KV1jcpvHxu09KTumGyfsTs5COI7veePUiqmTGmIMcqfTS7NMzuoWhpQarAr_XiRCNLZCovZtzEdsMThD5Fsi61XiOSqFWX-xPZo7q9Hy8cxYAVyXaveSSVHhW5GJrPHjn9r6PVfnBYcH8_FMXZfAcY_w7pkbwQub6c");'
+  >
+    <div class="flex flex-col gap-4">
+      <h1 class="text-7xl font-black text-white drop-shadow-[4px_4px_0_var(--accent-color)] md:text-8xl">
+        Scattered Minds
+      </h1>
+      <p class="text-2xl font-light text-gray-200 drop-shadow-md md:text-3xl">
+        An open-source journey in technology, compassion, and self-discovery.
+      </p>
+    </div>
+    <a
+      class="flex min-w-[200px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-14 px-8 bg-[var(--primary-color)] text-white text-2xl font-bold leading-normal tracking-wider pixel-button"
+      href="#"
+    >
+      <span class="truncate">Watch Live Stream</span>
+    </a>
+  </section>
+
+  <section class="py-16 md:py-24 space-y-12">
+    <div class="text-center max-w-3xl mx-auto">
+      <h2
+        class="text-5xl font-bold tracking-tight text-[var(--text-color)] sm:text-6xl drop-shadow-[3px_3px_0_var(--primary-color)]"
+      >
+        Empowering Through Open Source
+      </h2>
+      <p class="mt-6 text-2xl leading-8 text-[var(--text-secondary)]">
+        At Scattered Minds, we believe in the power of open source to create positive change. Our mission is threefold:
+      </p>
+    </div>
+    <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+      <div
+        class="flex flex-col gap-4 bg-[var(--card-background)] p-6 pixel-border transition-transform hover:-translate-y-1 hover:-translate-x-1"
+      >
+        <div
+          class="flex h-16 w-16 items-center justify-center bg-[var(--primary-color)] pixel-border border-[var(--card-border)]"
+        >
+          <svg fill="currentColor" height="40" viewBox="0 0 256 256" width="40" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M128 128h32v32h-32zM96 96h32v32H96zM96 160h32v32H96zM64 128h32v32H64zM160 96h32v32h-32zM32 32v192h192V32H32zm176 176H48V48h160v160z"
+            ></path>
+          </svg>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-3xl font-semibold text-[var(--text-color)]">Tech for Shelter Animals</h3>
+          <p class="text-xl text-[var(--text-secondary)]">
+            Building accessible, open-source technology to improve the lives of shelter animals and support their
+            caregivers.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4 bg-[var(--card-background)] p-6 pixel-border transition-transform hover:-translate-y-1 hover:-translate-x-1"
+      >
+        <div
+          class="flex h-16 w-16 items-center justify-center bg-[var(--primary-color)] pixel-border border-[var(--card-border)]"
+        >
+          <svg fill="currentColor" height="40" viewBox="0 0 256 256" width="40" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M108 108 A 24 24 0 1 0 108 60 A 24 24 0 1 0 108 108 M 108 116 A 40 40 0 0 0 36 168 L 36 200 L 180 200 L 180 168 A 40 40 0 0 0 108 116 M 180 60 h 24 v 24 h -24 z M 180 100 h 40 v 24 h -40 z M 32 32 v 192 h 192 V 32 H 32 z m 176 176 H 48 V 48 h 160 v 160 z"
+            ></path>
+          </svg>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-3xl font-semibold text-[var(--text-color)]">A Supportive Community</h3>
+          <p class="text-xl text-[var(--text-secondary)]">
+            Fostering a welcoming community for scattered minds, promoting collaboration, shared learning, and mutual
+            support.
+          </p>
+        </div>
+      </div>
+      <div
+        class="flex flex-col gap-4 bg-[var(--card-background)] p-6 pixel-border transition-transform hover:-translate-y-1 hover:-translate-x-1"
+      >
+        <div
+          class="flex h-16 w-16 items-center justify-center bg-[var(--primary-color)] pixel-border border-[var(--card-border)]"
+        >
+          <svg fill="currentColor" height="40" viewBox="0 0 256 256" width="40" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M88 88h80v16H88zM88 120h80v16H88zM88 152h48v16H88zM64 48h128v160H64V48zm-16-16v192h160V32H48zM32 0v192h16V16h176V0H32z"
+            ></path>
+          </svg>
+        </div>
+        <div class="flex flex-col gap-2">
+          <h3 class="text-3xl font-semibold text-[var(--text-color)]">Assistive Technology</h3>
+          <p class="text-xl text-[var(--text-secondary)]">
+            Developing assistive technologies to empower individuals with diverse cognitive styles and enhance their
+            daily capabilities.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-8 bg-[var(--card-background)] p-8 md:p-12 pixel-border">
+    <div>
+      <h2
+        class="text-4xl font-bold tracking-tight text-[var(--text-color)] sm:text-5xl drop-shadow-[2px_2px_0_var(--accent-color)]"
+      >
+        Radical Transparency
+      </h2>
+      <p class="mt-4 text-2xl leading-8 text-[var(--text-secondary)]">
+        We embrace radical transparency by live streaming the entire development process. This allows for real-time
+        collaboration, feedback, and a deeper connection with our community. Follow along as we build, learn, and grow
+        together.
+      </p>
+    </div>
+    <div class="relative pt-8">
+      <div class="kintsugi-line h-1 w-full top-0 left-0"></div>
+      <h2
+        class="text-4xl font-bold tracking-tight text-[var(--text-color)] sm:text-5xl drop-shadow-[2px_2px_0_var(--accent-color)]"
+      >
+        A Journey of Healing
+      </h2>
+      <p class="mt-4 text-2xl leading-8 text-[var(--text-secondary)]">
+        Scattered Minds is not just about technology; it's also a personal journey of healing through creation. The
+        founder's experiences with a scattered mind drive the project's focus on compassion, understanding, and building
+        tools that support diverse cognitive styles. We embrace the Kintsugi philosophy, recognizing that imperfections
+        and challenges are integral to a beautiful and resilient whole.
+      </p>
+    </div>
+  </section>
   </main>
 
   <Footer />

@@ -1,13 +1,13 @@
 ---
 import ToggleMenu from '~/components/ui/ToggleMenu.astro';
-
+---
+  
 const links = [
   { text: 'About', href: '#' },
   { text: 'Projects', href: '#' },
   { text: 'Community', href: '#' },
   { text: 'Contact', href: '#' },
 ];
----
 
 <header
   class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b-4 border-card-border bg-background/80 px-10 py-4 backdrop-blur-sm"
@@ -42,6 +42,40 @@ const links = [
       </svg>
       <span class="drop-shadow-accent-sm">Scattered Minds</span>
     </a>
+<Logo />
+
+<header
+  class="sticky top-0 z-50 flex items-center justify-between
+whitespace-nowrap border-b-4 border-card-border bg-background/80
+px-10 py-4 backdrop-blur-sm"
+>
+  <div>
+    <nav class="flex flex-1 justify-end gap-6">
+      <div class="flex items-center gap-6 text-2xl">
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">About</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Projects</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Community</a
+        >
+        <a
+          class="text-base font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          href="#">Contact</a
+        >
+      </div>
+      <a
+        class="flex min-w-[120px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden h-11 px-5 bg-[var(--primary-color)] text-white text-xl font-bold leading-normal tracking-wide pixel-button"
+        href="#"
+      >
+        <span class="truncate">Join Discord</span>
+      </a>
+    </nav>
   </div>
 
   <!-- Desktop Navigation -->
