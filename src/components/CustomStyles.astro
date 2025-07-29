@@ -17,35 +17,47 @@ import '@fontsource-variable/inter';
 // Oswald
 // 'Space Grotesk'
 // Urbanist
-
-// --primary-color: #7e57c2;
-// --background-color: #1a1a2e;
-// --text-color: #e0e0e0;
-// --card-background: #2a2a3e;
-// --card-border: #4a4a5e;
-// --text-secondary: #b0b0c0;
-// --accent-color: #ff7043;
-// --accent-glow: rgba(255, 112, 67, 0.5);
 ---
 
 <style is:inline>
   :root {
-    --aw-font-sans: 'Inter Variable;
+    --aw-font-sans: 'Inter Variable';
     --aw-font-serif: 'Inter Variable';
-    --aw-font-monospace: 'VT323';
     --aw-font-heading: 'Inter Variable';
 
-    --aw-color-primary: #7e57c2;
-    --aw-color-secondary: #2a2a3e;
+    --aw-color-primary: '#7e57c2';
+    --aw-color-secondary: rgb(1 84 207);
     --aw-color-accent: '#ff7043';
 
     --aw-color-text-heading: rgb(0 0 0);
-    --aw-color-text-default: #e0e0e0;
-    --aw-color-text-muted: #b0b0c0;
-    --aw-color-bg-page: #1a1a2e;
+    --aw-color-text-default: rgb(16 16 16);
+    --aw-color-text-muted: rgb(16 16 16 / 66%);
+    --aw-color-bg-page: rgb(255 255 255);
+
+    --aw-color-bg-page-dark: rgb(3 6 32);
 
     ::selection {
-      background-color: #1a1a2e;
+      background-color: lavender;
+    }
+  }
+
+  .dark {
+    --aw-font-sans: 'Inter Variable';
+    --aw-font-serif: 'Inter Variable';
+    --aw-font-heading: 'Inter Variable';
+
+    --aw-color-primary: rgb(1 97 239);
+    --aw-color-secondary: rgb(1 84 207);
+    --aw-color-accent: rgb(109 40 217);
+
+    --aw-color-text-heading: rgb(247, 248, 248);
+    --aw-color-text-default: rgb(229 236 246);
+    --aw-color-text-muted: rgb(229 236 246 / 66%);
+    --aw-color-bg-page: rgb(3 6 32);
+
+    ::selection {
+      background-color: black;
+      color: snow;
     }
   }
 </style>

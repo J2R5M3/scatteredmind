@@ -1,20 +1,22 @@
 ---
+import Layout from '~/layouts/Layout.astro';
 import Header from '~/components/widgets/Header.astro';
 import Footer from '~/components/widgets/Footer.astro';
 ---
 
-<Header />
+<Layout>
+  <Header />
 
-<main class="flex-grow">
-  <section class="py-16">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6">
-      <div class="text-center">
-        <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Welcome to Scattered Minds</h1>
-        <p class="mt-4 text-xl text-muted">This is a placeholder for the new homepage content.</p>
+  <main class="flex-grow">
+    <section class="py-16">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6">
+        <div class="text-center">
+          <h1 class="text-4xl font-extrabold tracking-tight sm:text-5xl">Welcome to Scattered Minds</h1>
+          <p class="mt-4 text-xl text-muted">This is a placeholder for the new homepage content.</p>
+        </div>
       </div>
-    </div>
-  </section>
-
+      
+      
   <section
     class="relative flex min-h-[500px] flex-col items-center
   justify-center gap-8 bg-cover bg-center bg-no-repeat p-8 text-center
@@ -144,4 +146,5 @@ import Footer from '~/components/widgets/Footer.astro';
   </section>
 </main>
 
-<Footer />
+  <Footer />
+</Layout>

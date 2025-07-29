@@ -1,15 +1,17 @@
----
-import ToggleMenu from '~/components/ui/ToggleMenu.astro';
-import Logo from '~/components/Logo.astro';
 
+import ToggleMenu from '~/components/ui/ToggleMenu.astro';
+
+---
 const links = [
   { text: 'About', href: '#' },
   { text: 'Projects', href: '#' },
   { text: 'Community', href: '#' },
   { text: 'Contact', href: '#' },
 ];
----
 
+<header
+  class="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b-4 border-card-border bg-background/80 px-10 py-4 backdrop-blur-sm"
+>
 <Logo />
 
 <header

@@ -32,13 +32,19 @@ body {
 
 @layer utilities {
   .bg-page {
-    background-color: var(--background-color);
+    background-color: var(--aw-color-bg-page);
+  }
+  .bg-dark {
+    background-color: var(--aw-color-bg-page-dark);
+  }
+  .bg-light {
+    background-color: var(--aw-color-bg-page);
   }
   .text-page {
-    color: var(--text-color);
+    color: var(--aw-color-text-page);
   }
   .text-muted {
-    color: var(--text-secondary);
+    color: var(--aw-color-text-muted);
   }
 }
 
@@ -121,6 +127,14 @@ body {
   display: block;
 }
 
+[astro-icon].icon-light > * {
+  stroke-width: 1.2;
+}
+
+[astro-icon].icon-bold > * {
+  stroke-width: 2.4;
+}
+
 [data-aw-toggle-menu] path {
   @apply transition;
 }
@@ -130,4 +144,10 @@ body {
 
 [data-aw-toggle-menu].expanded g > path:last-child {
   @apply rotate-45 translate-y-[-8px] translate-x-[14px];
+}
+
+/* To deprecated */
+
+.dd *:first-child {
+  margin-top: 0;
 }
