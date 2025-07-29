@@ -9,4 +9,14 @@
   "observability": {
     "enabled": true,
   },
+
+  "r2_buckets": [
+    {
+      "binding": "ECHOES_BUCKET", // Variable name for your code
+      "bucket_name": "scattered-souls-echoes", // Your actual R2 bucket name
+    },
+  ],
+  "ai": {
+    "binding": "AI", // Enables the AI models
+  },
 }
